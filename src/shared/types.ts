@@ -6,6 +6,15 @@ export interface Node extends Point {
   in: Point;
   out: Point;
 }
+export interface TextOnPath {
+  content: string;
+  fontFamily: string;
+  fontSize: number;
+  letterSpacing: number;
+  startOffset: number;
+  direction: 1 | -1;
+  color: string;
+}
 export interface Shape {
   id: string;
   name: string;
@@ -16,6 +25,8 @@ export interface Shape {
   width: number;
   opacity: number;
   group?: string;
+  text?: TextOnPath;
+  d?: string;
 }
 export interface Document {
   shapes: Shape[];

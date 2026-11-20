@@ -16,6 +16,7 @@ import { NodeOverlay, coordinates, select } from "../features/nodes";
 import { Properties } from "../features/appearance";
 import { Layers, translateSelected } from "../features/layers";
 import { ExportBar, restore, save, storageStatus } from "../features/export";
+import { TextPath } from "../features/textpath";
 import type { Shape } from "../shared/types";
 if (!restore()) seed();
 doc.selected = doc.shapes.length
@@ -76,6 +77,14 @@ function finish() {
 }
 window.addEventListener("keydown", (e) => {
   if (e.key === "Enter" || e.key === "Escape") finish();
+  const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(
+    (e.target as HTMLElement).tagName,
+  );
+  if (!typing && (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z") {
+    e.preventDefault();
+    if (e.shiftKey) redo();
+    else undo();
+  }
 });
 </script>
 <template>
@@ -122,9 +131,15 @@ window.addEventListener("keydown", (e) => {
             :data-shape="s.id"
             :d="path(s)"
             :fill="s.fill"
+            :fill-rule="s.d ? 'evenodd' : undefined"
             :stroke="s.stroke"
             :stroke-width="s.width"
             :opacity="s.opacity"
+          />
+          <TextPath
+            v-for="s in doc.shapes.filter((s) => s.text)"
+            :key="'t' + s.id"
+            :shape="s"
           />
           <NodeOverlay />
         </svg>

@@ -259,6 +259,159 @@ aside p {
 .tip small {
   font-size: 9px;
 }
+/* text on path */
+.glyph {
+  user-select: none;
+  pointer-events: none;
+}
+.glyph-overflow {
+  fill: #e5484d !important;
+  text-decoration: underline dashed;
+}
+.overflow-mark line {
+  stroke: #e5484d;
+  stroke-width: 1.2;
+  stroke-dasharray: 4 3;
+}
+.overflow-mark text {
+  fill: #e5484d;
+  font-size: 11px;
+  font-weight: 600;
+}
+aside textarea {
+  width: 100%;
+  margin-top: 8px;
+  padding: 7px;
+  border: 1px solid #e9e3ee;
+  border-radius: 4px;
+  font: inherit;
+  resize: vertical;
+}
+aside select {
+  max-width: 130px;
+  padding: 6px;
+  border: 1px solid #e9e3ee;
+  border-radius: 4px;
+  background: white;
+  font: inherit;
+}
+label.block {
+  display: block;
+}
+.direction {
+  display: flex;
+  gap: 6px;
+}
+.direction button {
+  padding: 6px 12px;
+  border: 1px solid #e0d6ec;
+  border-radius: 6px;
+  font-size: 11px;
+}
+.direction button.active {
+  background: #8055d5;
+  color: white;
+  border-color: #8055d5;
+}
+.text-stats {
+  font-size: 10px;
+  line-height: 1.6;
+  color: #8b7d9c;
+}
+.text-stats.warn {
+  color: #d13438;
+  background: #fdf0f0;
+  border-radius: 6px;
+  padding: 8px;
+}
+.outline-btn {
+  width: 100%;
+  border: 1px solid #cdbce8;
+  border-radius: 6px;
+  padding: 9px;
+  color: #6a4bb3;
+  font-size: 11px;
+  margin-top: 6px;
+}
+.outline-btn:hover {
+  background: #f0e9fb;
+}
+.remove-text {
+  width: 100%;
+  color: #b0435a;
+  font-size: 10px;
+  padding: 6px;
+}
+.hint {
+  font-size: 9.5px;
+  color: #a89bb2;
+  line-height: 1.7;
+}
+/* export dialog */
+.dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  background: #2f245166;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+.dialog {
+  width: 430px;
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 24px 70px #2f245144;
+}
+.dialog h3 {
+  margin: 0 0 6px;
+  font-size: 15px;
+  color: #4a3a6b;
+}
+.dialog-sub {
+  font-size: 11px;
+  color: #8b7d9c;
+  line-height: 1.7;
+}
+.option {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  border: 1px solid #e9e3ee;
+  border-radius: 8px;
+  padding: 12px;
+  margin: 10px 0;
+  cursor: pointer;
+  font-size: 11px;
+  line-height: 1.7;
+  color: #6f6084;
+}
+.option.chosen {
+  border-color: #8055d5;
+  background: #f7f3fd;
+}
+.option input {
+  margin-top: 3px;
+  accent-color: #8055d5;
+}
+.option b {
+  display: block;
+  color: #4a3a6b;
+  margin-bottom: 3px;
+}
+.option em {
+  font-style: normal;
+  float: right;
+  color: #8055d5;
+  font-weight: 600;
+}
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
 @media (max-width: 1250px) {
   .stage {
     justify-content: flex-start;

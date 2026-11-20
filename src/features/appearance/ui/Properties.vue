@@ -1,8 +1,19 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import { active } from "../model/active";
 import { style } from "../model/style";
 import { colors } from "../lib/colors";
+import { TextSection } from "../../textpath";
+import { scaleSelected } from "../../layers";
+import { doc } from "../../../shared/document";
+
+const scalePct = ref(100);
+function applyScale() {
+  scaleSelected(scalePct.value / 100);
+  scalePct.value = 100;
+}
 </script>
+
 <template>
   <aside>
     <h3>Design <span>•••</span></h3>
@@ -53,6 +64,16 @@ import { colors } from "../lib/colors";
           :value="active.opacity"
           @input="style('opacity', +($event.target as HTMLInputElement).value)"
       /></label>
+      <h4>TRANSFORM 变换</h4>
+      <label
+        >组缩放 %
+        <input type="number" min="1" v-model.number="scalePct"
+      /></label>
+      <button class="outline-btn" @click="applyScale">应用缩放</button>
+      <p class="hint">
+        组缩放会等比缩放路径与文字度量；单独改“字号”则让文字沿原路径重新排布，二者结果不同。
+      </p>
+      <TextSection :shape="active" />
       <h4>PATH DETAILS</h4>
       <p>{{ active.nodes.length }} anchor points</p>
       <label

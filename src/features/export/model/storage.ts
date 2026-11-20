@@ -15,6 +15,20 @@ export function save() {
 function point(v: Point) {
   return v && Number.isFinite(v.x) && Number.isFinite(v.y);
 }
+function validText(t: unknown): boolean {
+  if (!t || typeof t !== "object") return false;
+  const x = t as Record<string, unknown>;
+  return (
+    typeof x.content === "string" &&
+    typeof x.fontFamily === "string" &&
+    Number.isFinite(x.fontSize) &&
+    Number.isFinite(x.letterSpacing) &&
+    Number.isFinite(x.startOffset) &&
+    (x.direction === 1 || x.direction === -1) &&
+    typeof x.color === "string" &&
+    /^#[0-9a-f]{3,8}$/i.test(x.color)
+  );
+}
 function valid(s: Shape) {
   return (
     s &&
@@ -27,7 +41,9 @@ function valid(s: Shape) {
     typeof s.stroke === "string" &&
     /^#[0-9a-f]{3,8}$/i.test(s.stroke) &&
     Number.isFinite(s.width) &&
-    Number.isFinite(s.opacity)
+    Number.isFinite(s.opacity) &&
+    (s.text === undefined || validText(s.text)) &&
+    (s.d === undefined || typeof s.d === "string")
   );
 }
 export function restore() {
